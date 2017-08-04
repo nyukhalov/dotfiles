@@ -154,6 +154,12 @@ set complete+=kspell
 " Always use vertical diffs
 set diffopt+=vertical
 
+" Tune gitgutter
+set updatetime=250
+
+" Ignore for CtrlP
+set wildignore+=*/target/*
+
 " Set up schema
 syntax enable
 set background=dark
