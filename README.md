@@ -15,7 +15,7 @@ Install
 
 Clone onto your laptop:
 
-    git clone git://github.com/thoughtbot/dotfiles.git ~/dotfiles
+    git clone git@github.com:nyukhalov/dotfiles.git ~/dotfiles
 
 (Or, [fork and keep your fork
 updated](http://robots.thoughtbot.com/keeping-a-github-fork-updated)).
@@ -177,10 +177,6 @@ What's in it?
 [vim](http://www.vim.org/) configuration:
 
 * [Ctrl-P](https://github.com/kien/ctrlp.vim) for fuzzy file/buffer/tag finding.
-* [Rails.vim](https://github.com/tpope/vim-rails) for enhanced navigation of
-  Rails file structure via `gf` and `:A` (alternate), `:Rextract` partials,
-  `:Rinvert` migrations, etc.
-* Run many kinds of tests [from vim]([https://github.com/janko-m/vim-test)
 * Set `<leader>` to a single space.
 * Switch between the last two files with space-space.
 * Syntax highlighting for Markdown, HTML, JavaScript, Ruby, Go, Elixir, more.
@@ -210,10 +206,6 @@ configuration:
 * Adds `pre-commit` and `prepare-commit-msg` stubs that delegate to your local
   config.
 
-[Ruby](https://www.ruby-lang.org/en/) configuration:
-
-* Add trusted binstubs to the `PATH`.
-* Load rbenv into the shell, adding shims onto our `PATH`.
 
 Shell aliases and scripts:
 
