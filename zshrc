@@ -44,3 +44,6 @@ _load_settings "$HOME/.zsh/configs"
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
+
+#ENV
+export GOPATH=/Users/rniukhalov/Projects/go

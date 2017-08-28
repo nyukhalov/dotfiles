@@ -9,6 +9,7 @@ alias cls="clear"
 # Git
 alias gfp="git fetch -p"
 alias ggpushf='git push origin $(git_current_branch) -f'
+alias gpc='git config user.name "Roman Niukhalov" && git config user.email "r.nyukhalov@gmail.com" && echo "Set personal configuration for this branch"' # git personcal config
 
 # Bundler
 alias b="bundle"
