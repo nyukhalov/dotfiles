@@ -23,5 +23,7 @@
   prune = true
 [rebase]
   autosquash = true
+[batch]
+  autosetuprebase = always
 [include]
   path = ~/.gitconfig.local
