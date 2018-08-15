@@ -47,6 +47,7 @@ _load_settings "$HOME/.zsh/configs"
 
 #ENV
 export PATH=~/Library/Python/2.7/bin/:$PATH
+export PATH=/Users/rniukhalov/miniconda3/bin:$PATH
 export GOPATH=/Users/rniukhalov/Projects/go
 export ANDROID_HOME=/Users/rniukhalov/Library/Android/sdk
 export LC_ALL=en_US.UTF-8
