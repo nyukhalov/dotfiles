@@ -27,3 +27,11 @@
   autosetuprebase = always
 [include]
   path = ~/.gitconfig.local
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	name = Roman Niukhalov
+	email = r.nyukhalov@gmail.com
