@@ -81,8 +81,8 @@ if executable('ag')
   endif
 endif
 
-" Make it obvious where 80 characters is
-set colorcolumn=80
+" Make it obvious where 120 characters is
+set colorcolumn=120
 
 " Numbers
 set number
@@ -132,18 +132,6 @@ nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
 
-" configure syntastic syntax checking to check on open as well as save
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_eruby_ruby_quiet_messages =
-    \ {"regex": "possibly useless use of a variable in void context"}
-
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
 set spellfile=$HOME/.vim-spell-en.utf-8.add
@@ -189,9 +177,8 @@ map <F2> :set paste<CR>i
 au InsertLeave * set nopaste
 
 " Reduce timeout after <ESC> is recieved.
-set ttimeout
-set ttimeoutlen=20
-set notimeout
+set timeoutlen=1000
+set ttimeoutlen=0
 
 " Fuzzy finder: ignore stuff that can't be opened, and generated files
 let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"

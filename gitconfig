@@ -27,3 +27,6 @@
   autosetuprebase = always
 [include]
   path = ~/.gitconfig.local
+[user]
+	name = Roman Niukhalov
+	email = r.nyukhalov@gmail.com
