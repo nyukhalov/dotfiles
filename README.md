@@ -9,6 +9,11 @@ Requirements
 Set zsh as your login shell:
 
     chsh -s $(which zsh)
+    
+Follow [this](https://gist.github.com/kevin-smets/8568070) guide to install and configure iTerm.
+
+Ensure Preferences -> Profiles -> Keys is as on the picture below
+![text](https://i.imgur.com/61Q7zZV.png)
 
 Install
 -------
