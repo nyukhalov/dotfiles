@@ -188,6 +188,9 @@ map <F10> :NERDTreeToggle<CR>
 " Current file in nerdtree
 map <F9> :NERDTreeFind<CR>
 
+" Fix showing '^G' as node delimiter
+let g:NERDTreeNodeDelimiter = "\u00a0"
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
