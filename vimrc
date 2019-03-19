@@ -191,6 +191,9 @@ map <F9> :NERDTreeFind<CR>
 " Fix showing '^G' as node delimiter
 let g:NERDTreeNodeDelimiter = "\u00a0"
 
+" Clear search highlighting
+nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
