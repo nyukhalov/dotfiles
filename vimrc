@@ -151,8 +151,7 @@ set wildignore+=*/target/*
 " Set up schema
 syntax enable
 set background=dark
-"let g:solarized_termcolors = 256
-colorscheme solarized
+colorscheme gruvbox
 
 " Enable cursorline & scrolling optimization
 set lazyredraw
