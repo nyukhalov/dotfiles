@@ -85,7 +85,7 @@ endif
 set colorcolumn=120
 
 " Numbers
-set number
+set number relativenumber
 set numberwidth=5
 
 " Tab completion
