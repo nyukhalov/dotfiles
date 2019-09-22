@@ -43,7 +43,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
-Plug 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace' "causes all trailing whitespace characters to be highlighted
 Plug 'editorconfig/editorconfig-vim'
 Plug 'morhetz/gruvbox'
 Plug 'ctrlpvim/ctrlp.vim'

@@ -1,34 +1,11 @@
-" Leader
-let mapleader = " "
-
+" Enable VIM features by disabling compatibility with the old VI
 set nocompatible
-set backspace=2   " Backspace deletes like most programs in insert mode
-set nobackup
-set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=50
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set laststatus=2  " Always display the status line
-set autowrite     " Automatically :write before running commands
-set hlsearch
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
-endif
 
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
-
+" For more information see https://vi.stackexchange.com/a/10125
 filetype plugin indent on
 
 augroup vimrcEx
@@ -48,38 +25,41 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
 augroup END
 
-" When the type of shell script is /bin/sh, assume a POSIX-compatible
-" shell for syntax highlighting purposes.
-let g:is_posix = 1
 
-" Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
-set shiftround
-set expandtab
+""" Key Bindings
+
+" Backspace deletes like most programs in insert mode
+set backspace=2
+
+"Force to use vim keys
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" Clear search highlighting by pressing Ctrl-L
+nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+
+"Key to insert mode with paste using F2 key
+map <F2> :set paste<CR>i
+" Leave paste mode on exit
+au InsertLeave * set nopaste
+
+" Toggle nerdtree with F10
+map <F10> :NERDTreeToggle<CR>
+" Current file in nerdtree with F9
+map <F9> :NERDTreeFind<CR>
+
+
+""" Visual Settings
+
+" Set up schema
+syntax enable
+set background=dark
+colorscheme gruvbox
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
-
-" Use one space, not two, after punctuation.
-set nojoinspaces
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-
-  if !exists(":Ag")
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
-  endif
-endif
 
 " Make it obvious where 120 characters is
 set colorcolumn=120
@@ -88,70 +68,44 @@ set colorcolumn=120
 set number relativenumber
 set numberwidth=5
 
-" Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-set wildmode=list:longest,list:full
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
+" Always display the status line
+set laststatus=2
 
-" Switch between the last two files
-nnoremap <Leader><Leader> <c-^>
+" Highlight search keyword
+set hlsearch
 
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+""" Misc
 
-" Treat <li> and <p> tags like the block tags they are
-let g:html_indent_tags = 'li\|p'
+" Disable file backups
+set nobackup
+set nowritebackup
+
+" Disable creating .swp files
+set noswapfile
+
+set showcmd       " display incomplete commands
+set incsearch     " do incremental searching
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
 
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab
+
 " Quicker window movement. Seemlessly navigate between Vim/Tmux panes
 let g:tmux_navigator_no_mappings = 1
-
-" This is a hack due to a neovim bug for going Left
-" Details: https://github.com/christoomey/vim-tmux-navigator#it-doesnt-work-in-neovim-specifically-c-h
-nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
-
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
-
-" Set spellfile to location that is guaranteed to exist, can be symlinked to
-" Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-set spellfile=$HOME/.vim-spell-en.utf-8.add
-
-" Autocomplete with dictionary words when spell check is on
-set complete+=kspell
-
-" Always use vertical diffs
-set diffopt+=vertical
+nnoremap <silent> <Esc>h :TmuxNavigateLeft<cr>
+nnoremap <silent> <Esc>j :TmuxNavigateDown<cr>
+nnoremap <silent> <Esc>k :TmuxNavigateUp<cr>
+nnoremap <silent> <Esc>l :TmuxNavigateRight<cr>
+nnoremap <silent> <Esc>\ :TmuxNavigatePrevious<cr>
 
 " Tune gitgutter
 set updatetime=250
-
-" Ignore for CtrlP
-set wildignore+=*/target/*
-
-" Set up schema
-syntax enable
-set background=dark
-colorscheme gruvbox
 
 " Enable cursorline & scrolling optimization
 set lazyredraw
@@ -162,6 +116,13 @@ set cursorline
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=128
 
+" Reduce timeout after <ESC> is recieved.
+set timeoutlen=1000
+set ttimeoutlen=0
+
+
+""" Plugins
+
 " Airline
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -170,28 +131,16 @@ endif
 let g:airline_symbols.space = "\ua0"
 set t_Co=256
 
-"key to insert mode with paste using F2 key
-map <F2> :set paste<CR>i
-" Leave paste mode on exit
-au InsertLeave * set nopaste
-
-" Reduce timeout after <ESC> is recieved.
-set timeoutlen=1000
-set ttimeoutlen=0
+" Ignore for CtrlP
+set wildignore+=*/target/*
 
 " Fuzzy finder: ignore stuff that can't be opened, and generated files
 let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
 
-" Toggle nerdtree with F10
-map <F10> :NERDTreeToggle<CR>
-" Current file in nerdtree
-map <F9> :NERDTreeFind<CR>
-
+" Nerd Tree
 " Fix showing '^G' as node delimiter
 let g:NERDTreeNodeDelimiter = "\u00a0"
 
-" Clear search highlighting
-nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
