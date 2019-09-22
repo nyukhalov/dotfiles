@@ -5,26 +5,6 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-" For more information see https://vi.stackexchange.com/a/10125
-filetype plugin indent on
-
-augroup vimrcEx
-  autocmd!
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it for commit messages, when the position is invalid, or when
-  " inside an event handler (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-  " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
-augroup END
-
 
 """ Key Bindings
 
@@ -46,9 +26,9 @@ map <F2> :set paste<CR>i
 au InsertLeave * set nopaste
 
 " Toggle nerdtree with F10
-map <F10> :NERDTreeToggle<CR>
+map <silent> <F10> :NERDTreeToggle<CR>
 " Current file in nerdtree with F9
-map <F9> :NERDTreeFind<CR>
+map <silent> <F9> :NERDTreeFind<CR>
 
 
 """ Visual Settings
@@ -120,6 +100,26 @@ set synmaxcol=128
 set timeoutlen=1000
 set ttimeoutlen=0
 
+" For more information see https://vi.stackexchange.com/a/10125
+filetype plugin indent on
+
+augroup vimrcEx
+  autocmd!
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it for commit messages, when the position is invalid, or when
+  " inside an event handler (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  " Set syntax highlighting for specific file types
+  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+augroup END
+
 
 """ Plugins
 
@@ -134,15 +134,12 @@ set t_Co=256
 " Ignore for CtrlP
 set wildignore+=*/target/*
 
-" Fuzzy finder: ignore stuff that can't be opened, and generated files
-let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
-
 " Nerd Tree
 " Fix showing '^G' as node delimiter
 let g:NERDTreeNodeDelimiter = "\u00a0"
 
 
-" Local config
+""" Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
