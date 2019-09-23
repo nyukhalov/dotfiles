@@ -18,5 +18,13 @@ alias b="bundle"
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 
+# Docker
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+
+# Misc
+alias epoch="date +%s"
+alias r="ranger"
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
