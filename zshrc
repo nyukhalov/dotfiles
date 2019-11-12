@@ -46,13 +46,6 @@ _load_settings "$HOME/.zsh/configs"
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 #ENV
-export PATH=~/Library/Python/2.7/bin/:$PATH
-export PATH=~/miniconda3/bin:$PATH
 export GOPATH=~/Projects/go
-export ANDROID_HOME=~/Library/Android/sdk
-export JAVA_HOME=$(/usr/libexec/java_home)
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-# the fuck
-eval $(thefuck --alias)
