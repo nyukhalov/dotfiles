@@ -46,6 +46,5 @@ _load_settings "$HOME/.zsh/configs"
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 #ENV
-export GOPATH=~/Projects/go
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
