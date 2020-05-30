@@ -8,5 +8,16 @@ setopt extendedglob
 # Allow [ or ] whereever you want
 unsetopt nomatch
 
-# Increse the cursort movement speed
-xset r rate 300 50
+
+case "$OSTYPE" in
+  darwin*)
+    # ...
+  ;;
+  linux*)
+    # Increse the cursort movement speed
+    xset r rate 300 50
+
+    # Switch ESC and Caps buttons
+    setxkbmap -option caps:swapescape
+  ;;
+esac
