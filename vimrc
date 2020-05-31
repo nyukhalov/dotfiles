@@ -56,6 +56,9 @@ set hlsearch
 
 """ Misc
 
+" Always use the system clipboard
+set clipboard+=unnamedplus
+
 " Disable file backups
 set nobackup
 set nowritebackup
