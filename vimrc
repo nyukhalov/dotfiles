@@ -91,7 +91,6 @@ set updatetime=250
 " Enable cursorline & scrolling optimization
 set lazyredraw
 set ttyfast
-set ttyscroll=3
 set cursorline
 
 " Syntax coloring lines that are too long just slows down the world
