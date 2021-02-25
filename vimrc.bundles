@@ -15,6 +15,8 @@ command!  -nargs=1 UnPlug call s:UnPlug(<args>)
 call plug#begin('~/.vim/bundle')
 
 " Define bundles via Github repos
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim' "Install https://github.com/ggreer/the_silver_searcher in order to search text using :Ag
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'slim-template/vim-slim'
@@ -26,7 +28,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'ntpeters/vim-better-whitespace' "causes all trailing whitespace characters to be highlighted
 Plug 'editorconfig/editorconfig-vim'
 Plug 'morhetz/gruvbox'
-Plug 'ctrlpvim/ctrlp.vim'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
