@@ -140,6 +140,8 @@ set wildignore+=*/target/*
 " Nerd Tree
 " Fix showing '^G' as node delimiter
 let g:NERDTreeNodeDelimiter = "\u00a0"
+" Show hidden files
+let NERDTreeShowHidden=1
 
 
 """ Local config
